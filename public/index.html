@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Malga - Demo 3DS2</title>
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/checkout/">
+  <link href="https://getbootstrap.com/docs/5.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="icon" href="https://getbootstrap.com/docs/5.2/assets/img/favicons/favicon.ico">
+  <meta name="theme-color" content="#712cf9">
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+</head>
+
+<body class="bg-light">
+
+  <div class="container">
+    <main>
+      <div class="py-5 text-center">
+        <h2>Malga - Demo 3DS2 com Redirect</h2>
+        <p class="lead"></p>
+      </div>
+
+      <div class="row g-5">
+        <button class="w-100 btn btn-primary btn-lg" name="btn-payment-test-1" type="submit">Testar usando desafio</button>
+        <button class="w-100 btn btn-secondary btn-lg" name="btn-payment-test-2" type="submit">Testar sem desafio</button>
+        <button class="w-100 btn btn-info btn-lg" name="btn-payment-test-3" type="submit">Testar usando cartão sem suporte a 3DS</button>
+        <button class="w-100 btn btn-danger btn-lg" name="btn-payment-test-4" type="submit">Testar erro no processo de autenticação do 3DS</button>
+      </div>
+    </main>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+      <p class="mb-1">&copy; 2023 Malga Demo 3DS2</p>      
+    </footer>
+  </div>
+
+
+  <script src="https://getbootstrap.com/docs/5.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+
+  <script src="./script.js"></script>
+
+  <script>
+    // simulando testes com cartões da adyen
+    
+    // 3ds com desafio
+    $('[name="btn-payment-test-1"]').click(function(e) {
+      click(this, e);
+      createCharge('4212345678910006');
+    });
+
+    // 3ds sem desafio
+    $('[name="btn-payment-test-2"]').click(function(e) {
+      click(this, e);
+      createCharge('5201281505129736');
+    });
+
+    // cartão não suporta 3ds
+    $('[name="btn-payment-test-3"]').click(function(e) {
+      click(this, e);
+      createCharge('4199350000000002');
+    });
+
+    // simular falha durante processo de autenticação
+    $('[name="btn-payment-test-4"]').click(function(e) {
+      click(this, e);
+      createCharge('5201282999005515');
+    });
+
+    function click(element, event) {
+      event.preventDefault();
+      $(element).text('carregando ... ').attr('disabled', true);
+    }
+    
+  </script>
+
+  <!-- Olhe a função createCharge, nela temos a resposta do transacional com os valores necessários para montar esse formulário -->
+  <form id="pageform" action="" method="post">
+    <input type="hidden" name="MD" value="" />
+    <input type="hidden" name="PaReq" value="" />
+    <input type="hidden" name="TermUrl" value="" />
+  </form>
+</body>
+
+</html>

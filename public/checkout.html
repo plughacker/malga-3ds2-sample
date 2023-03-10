@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exemplo Checkout 3DS2</title>
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/checkout/">
+  <link href="https://getbootstrap.com/docs/5.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="icon" href="https://getbootstrap.com/docs/5.2/assets/img/favicons/favicon.ico">
+  <meta name="theme-color" content="#712cf9">
+
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+    integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+
+</head>
+
+<body class="bg-light">
+
+  <div class="container">
+    <main>
+      <div class="py-5 text-center">
+        <a href="/">Novo teste</a>
+      </div>
+      <div class="py-5 text-center">
+        <h2>Malga Checkout Demo - 3DS2 com redirect</h2>
+        <p class="lead"></p>
+      </div>
+      <div id="checkout-finish">
+        Analisando o resultado da compra ...
+        <span id="countdown"></span>
+      </div>
+    </main>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+      <p class="mb-1">&copy; 2023 Malga Demo</p>      
+    </footer>
+  </div>
+
+
+  <script src="https://getbootstrap.com/docs/5.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>    
+  <script src="./script.js"></script>
+  <script>
+    $(document).ready(function () {
+      const transactionId = localStorage.getItem('transaction_id');
+
+      // contador visual com contagem do tempo máximo em segundos até o programa abandonar o polling    
+      let countdownLimit = 30;
+      
+      const interval = setInterval(() => {
+        countdownLimit--;
+        $('#countdown').text(countdownLimit);
+        if(countdownLimit === 0) {
+          clearInterval(interval);
+          $('#checkout-finish').html(`
+              <div class="form-group">            
+                <textarea class="form-control"rows="30">Ainda não recebemos webhook da adeyn com status da transação, tente novamente em alguns minutos</textarea>
+              </div>`);
+        }
+
+        if (countdownLimit % 5 !== 0) {
+          return;
+        }
+
+        getCharge(transactionId, function(response) {
+          if (response.status !== 'pending') {
+            clearInterval(interval);
+            $('#checkout-finish').html(`
+              <div class="form-group">            
+                <textarea class="form-control"rows="30">${JSON.stringify(response, null, 2)}</textarea>
+              </div>`);
+          }
+        });
+
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
