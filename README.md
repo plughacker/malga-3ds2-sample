@@ -44,7 +44,7 @@ Informe seu merchant_id, api_key e client_id
 
 Para rodar o projeto você precisa ter a versão 16.x do nodejs, para instalar você pode consultar a documentação oficial em https://nodejs.org/en/download/
 
-## Rodando o projeot
+## Rodando o projeto
 
 Primeiro instale o projeto, em seguida você pode iniciar o servidor
 
