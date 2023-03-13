@@ -7,7 +7,7 @@ Criamos esse exemplo para ajudá-lo a implementar a utilização do 3ds2 em seu 
 Para testar esse fluxo você precisa de um merchant_id com o provedor da adyen configurado. Caso você não tenha um merchant_id com provedor adyen, você pode criar usando o curl abaixo:
 
 ```sh
-curl --location 'https://merchants-nt-dev.router.dev.malga.io/v1/merchants' \
+curl --location 'https://api.malga.io/v1/merchants' \
 --header 'x-api-key: <API_KEY>' \
 --header 'x-client-id: <CLIENT_ID>' \
 --header 'Content-Type: application/json' \
@@ -63,3 +63,9 @@ Você verá 4 botões com simulações de comportamentos possíveis.
 4. Exemplo de erro no processo de autorização
 
 Perceba que no passo 3 o processo de redirect não ocorre, pois não foi possível consultar o banco para seguir com processamento seguro.
+
+## Demo
+
+https://user-images.githubusercontent.com/107397876/224390932-1100fc20-9276-42d0-9355-853212be81a0.mp4
+
+
