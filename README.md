@@ -57,14 +57,13 @@ Agora acesse http://localhost:3000
 
 Você verá 4 botões com simulações de comportamentos possíveis.
 
-1. Exemplo do uso do 3DS com página de desafio
-2. Exemplo de uso de 3DS sem página de desafio
-3. Exemplo de um cartão que não suporta 3DS
-4. Exemplo de erro no processo de autorização
+Selecione um dos quatro exemplos então clique em `Realizar Pagamento`
 
-Perceba que no passo 3 o processo de redirect não ocorre, pois não foi possível consultar o banco para seguir com processamento seguro.
+Obs: Perceba que a simulação do exemplo de cartão sem suporte ao 3DS não redireciona para página do provedor, o fluxo é mais curto.
 
 ## Demo
+
+Preparamos um vídeo bem curto demostrando o resultado esperado desse projeto de demonstração
 
 https://user-images.githubusercontent.com/107397876/224799149-f33368c0-f37e-45fd-8eb5-85cd264d7c6a.mp4
 
