@@ -5,7 +5,7 @@ import axios from 'axios';
 const merchantId = process.env.MERCHANT_ID;
 const apiKey = process.env.API_KEY;
 const clientId = process.env.CLIENT_ID;
-const baseUrl = 'https://api.dev.malga.io';
+const baseUrl = process.env.BASE_URL;
 
 const headers = {
   'x-api-key': apiKey,
